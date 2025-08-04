@@ -12,6 +12,8 @@ phases:
     commands:
       - echo Packaging the Lambda function...
       - zip -r function.zip .
+      - export PYTHONPATH=$PYTHONPATH:./packages
+      - python3 Trading_System.py
 
 artifacts:
   files:
