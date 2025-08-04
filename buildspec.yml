@@ -1,1 +1,20 @@
+version: 0.2
 
+phases:
+  install:
+    runtime-versions:
+      python: 3.12  # Use the same Python runtime as Lambda
+    commands:
+      - echo Installing dependencies...
+      - pip install -r requirements.txt -t .
+
+  build:
+    commands:
+      - echo Packaging the Lambda function...
+      - zip -r function.zip .
+      - export PYTHONPATH=$PYTHONPATH:./packages
+      
+
+artifacts:
+  files:
+    - function.zip
